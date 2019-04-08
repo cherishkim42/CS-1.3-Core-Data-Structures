@@ -34,4 +34,4 @@ Please follow these instructions *exactly* to correctly set up your fork of this
 `git remote -v`
 
 1. Now, after each time you complete a challenge and *commit* your work, you can *push* it to both remote GitHub repos with one simple command:
-`git push`
+`git push`e

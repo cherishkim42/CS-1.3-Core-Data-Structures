@@ -8,16 +8,17 @@ def factorial(n):
         raise ValueError('factorial is undefined for n = {}'.format(n))
     # implement factorial_iterative and factorial_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    # return factorial_iterative(n)
-    return factorial_recursive(n)
+    return factorial_iterative(n)
+    # return factorial_recursive(n)
 
 
 def factorial_iterative(n):
-    # TODO: implement the factorial function iteratively here
-    pass
-    # once implemented, change factorial (above) to call factorial_iterative
-    # to verify that your iterative implementation passes all tests
-
+    #naming is a bit tricky b/c 'product' is technically also a factor
+    product_factor = 1 #by default, multiplying by 1.
+    while n > 0:
+        product_factor *= n # "x *= y" MEANS "x = y*x"
+        n -= 1
+    return product_factor
 
 def factorial_recursive(n):
     # check if n is one of the base cases
