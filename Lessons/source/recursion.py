@@ -11,7 +11,6 @@ def factorial(n):
     return factorial_iterative(n)
     # return factorial_recursive(n)
 
-
 def factorial_iterative(n):
     #naming is a bit tricky b/c 'product' is technically also a factor
     product_factor = 1 #by default, multiplying by 1.
@@ -43,3 +42,16 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Classmates' work presented in class
+
+
+# def jasmine_factorial_iterative(n):
+#     factorial = 1
+#     #2nd argument of RANGE is exclusive (not inclusive), tho the 1st is inclusive.
+#     #That's why it goes from 1 to n+1 - because that 2nd argument is exclusive!
+#     for i in range(1, n+1):
+#         print(factorial)
+#         factorial *= i
+#     return factorial
