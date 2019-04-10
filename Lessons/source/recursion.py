@@ -44,7 +44,7 @@ if __name__ == '__main__':
     main()
 
 
-# Classmates' work presented in class
+# Code review 04.08.19
 
 
 # def jasmine_factorial_iterative(n):

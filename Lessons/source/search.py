@@ -37,8 +37,8 @@ def binary_search_iterative(array, item):
     left = 0 #Set 'left' to leftmost index
     while right >= left: #Prevent from looking into already-discarded halves of array
         center = (right+left)//2 #Middle index of the sorted array
-        center_target = array[center] #Actual content of aforementioned middle index
-        if item == center_target: #Wow! A match! Return this lucky lotto winner
+        center_target = array[center]
+        if item == center_target:
             return center
         elif item < center_target: #Less than center? Set 'right' to just left of the original middle
             right = center-1
@@ -81,7 +81,7 @@ def binary_search_recursive(array, item, left=None, right=None):
 
 
 
-# Classmates' work presented in class
+# Code review 04.08.19
 
 
 # def ikey_linear_search_recursive(array, item, index=0):

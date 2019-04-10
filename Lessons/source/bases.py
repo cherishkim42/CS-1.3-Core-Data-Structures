@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
 
 
-# Classmates' work presented in class
+# Code review 04.04.19
 
 
 # def max_decode(digits, base): #Maximo's code review. Won't use. It's here for ref
