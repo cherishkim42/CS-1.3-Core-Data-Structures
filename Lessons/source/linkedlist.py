@@ -19,8 +19,7 @@ class LinkedList(object):
         self.head = None  # First node
         self.tail = None  # Last node
         self.size = 0  # Number of nodes
-        # Append the given items
-        if iterable is not None:
+        if iterable is not None: # Append the given items
             for item in iterable:
                 self.append(item)
 
@@ -37,11 +36,10 @@ class LinkedList(object):
         """Return a list of all items in this linked list.
         Best and worst case running time: Theta(n) for n items in the list
         because we always need to loop through all n nodes."""
-        # Create an empty list of results
         result = []  # Constant time to create a new list
         # Start at the head node
-        node = self.head  # Constant time to assign a variable reference
-        # Loop until the node is None, which is one node too far past the tail
+        node = self.head  # Constant time to assign var reference
+        # Loop until the node is None, which is ONE NODE TOO FAR past the tail
         while node is not None:  # Always n iterations because no early exit
             # Append this node's data to the results list
             result.append(node.data)  # Constant time to append to a list
@@ -70,16 +68,32 @@ class LinkedList(object):
         # Now node_count contains the number of nodes
         return node_count
 
+    # YEAP
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
-        # Check if the given index is out of range and if so raise an error
-        if not (0 <= index < self.size):
+        if not (0 <= index < self.size): #Error if index out of range
             raise ValueError('List index out of range: {}'.format(index))
-        # TODO: Find the node at the given index and return its data
+        items = []
+        i = 0 # initialize counter
+        node = self.head
+        while node is not None:
+            if i<index:
+                items.append(node.data)
+                node = node.next
+                i+=1
+        return items[index]
 
+        # REF. This is how Connor did it
+        # This and mine both fail the unit tests idk
+        # node = self.head
+        # for _ in range(index):
+        #     node = node.next
+        # return node.data
+
+    # YEAP
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
@@ -138,6 +152,7 @@ class LinkedList(object):
         # We never found data satisfying quality, but have to return something
         return None  # Constant time to return None
 
+    # YEAP
     def replace(self, old_item, new_item):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
