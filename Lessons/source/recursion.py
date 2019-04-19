@@ -42,16 +42,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-# Code review 04.08.19
-
-
-# def jasmine_factorial_iterative(n):
-#     factorial = 1
-#     #2nd argument of RANGE is exclusive (not inclusive), tho the 1st is inclusive.
-#     #That's why it goes from 1 to n+1 - because that 2nd argument is exclusive!
-#     for i in range(1, n+1):
-#         print(factorial)
-#         factorial *= i
-#     return factorial

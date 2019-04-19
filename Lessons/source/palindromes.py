@@ -13,42 +13,18 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+
+    #char for character
+    split_text = ''.join(char for char in text.lower() if char in string.ascii_lowercase)
+
+    return is_palindrome_iterative(split_text)
+    # return is_palindrome_recursive(split_text)
 
 def is_palindrome_iterative(text):
-    # WAS TRYING TO DEAL WITH PUNCTUATION, CAPS, & WHITESPACE
-    # RETURN LATER AND FIX
-    # https://www.geeksforgeeks.org/isupper-islower-lower-upper-python-applications/
-    # regex? maybe? https://www.tutorialspoint.com/How-to-remove-all-special-characters-punctuation-and-spaces-from-a-string-in-Python
-    # idt this was very helpful but it may become so https://www.programiz.com/python-programming/methods/string/isalnum
-
-    # remove = '''!()-[]{};:'"\,<>./?@#$%^&*_~ ''' #punctuation to remove
-    # split_text = ''
-
-    # for char in text: #char = 'character'
-    #     if char in remove:
-    #         text = text.replace(char, '')
-    #         print('omfg fuck this ' + text)
-    #     split_text+=(char.lower())
-    # print (split_text)
-    # return split_text
-
-
-    # for char in text: #char = 'character'
-        # if (char.isupper()) == True:
-        #     split_text+=(char.lower())
-    # for char in split_text:
-    #     if char in remove:
-    #         split_text = split_text.replace(char, '')
-
-
-
-    split_text = list(text)
     left = 0
-    right = len(split_text)-1
+    right = len(text)-1
     while left < right:
-        if split_text[left] == split_text[right]:
+        if text[left] == text[right]:
             right -= 1
             left += 1
         else:
@@ -57,7 +33,6 @@ def is_palindrome_iterative(text):
         return True
 
 def is_palindrome_recursive(text, left=None, right=None):
-    split_text = list(text)
     if left is None and right is None:
         left = 0
         right = len(split_text)-1

@@ -177,6 +177,9 @@ class LinkedListTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             ll.delete('X')  # item not in list
 
+    def test_tacocat(self):
+        
+
 
 if __name__ == '__main__':
     unittest.main()

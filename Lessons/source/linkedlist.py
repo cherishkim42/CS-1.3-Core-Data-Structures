@@ -68,7 +68,6 @@ class LinkedList(object):
         # Now node_count contains the number of nodes
         return node_count
 
-    # YEAP
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
@@ -76,33 +75,40 @@ class LinkedList(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         if not (0 <= index < self.size): #Error if index out of range
             raise ValueError('List index out of range: {}'.format(index))
-        items = []
-        i = 0 # initialize counter
         node = self.head
-        while node is not None:
-            if i<index:
-                items.append(node.data)
-                node = node.next
-                i+=1
-        return items[index]
+        for _ in range(index):
+            node = node.next
+        return node.data
 
-        # REF. This is how Connor did it
-        # This and mine both fail the unit tests idk
+        # #long and unnecessary
+        # items = []
+        # i = 0 #initialize counter
         # node = self.head
-        # for _ in range(index):
-        #     node = node.next
-        # return node.data
+        # while node is not None:
+        #     if i<index:
+        #         items.append(node.data)
+        #         node = node.next
+        #         i+=1
+        # return items[index]
 
-    # YEAP
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
-        # Check if the given index is out of range and if so raise an error
-        if not (0 <= index <= self.size):
+        if not (0 <= index <= self.size): #Error if index out of range
             raise ValueError('List index out of range: {}'.format(index))
-        # TODO: Find the node before the given index and insert item after it
+        elif index == 0:
+            return self.prepend(item)
+        elif index == self.size:
+            return self.append(item)
+        else:
+            current_node = self.head
+            for _ in range(index - 1):
+                current_node = current_node.next
+            chosen_node = Node(item)
+            current_node.next = chosen_node.next
+            self.size += 1
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -118,6 +124,7 @@ class LinkedList(object):
             self.tail.next = new_node
         # Update tail to new node regardless
         self.tail = new_node
+        self.size += 1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -133,6 +140,7 @@ class LinkedList(object):
             new_node.next = self.head
         # Update head to new node regardless
         self.head = new_node
+        self.size += 1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -152,15 +160,25 @@ class LinkedList(object):
         # We never found data satisfying quality, but have to return something
         return None  # Constant time to return None
 
-    # YEAP
     def replace(self, old_item, new_item):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
         Best case running time: ??? under what conditions? [TODO]
         Worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Find the node containing the given old_item and replace its
-        # data with new_item, without creating a new node object
-        pass
+        current_node = self.head
+
+        if self.head.data == old_item: #checking for super simple base cases
+            self.head.data = new_item
+            return #stops fxn.
+        elif self.tail.data == old_item:
+            self.tail.data = new_item
+            return
+        for _ in range(self.size):
+            if current_node.data == old_item:
+                current_node.data = new_item
+                return
+            current_node = current_node.next
+        raise ValueError('Value not found in linked list: {}'.format(old_item))
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -184,6 +202,7 @@ class LinkedList(object):
                 node = node.next
         # Check if we found the given item or we never did and reached the tail
         if found:
+            self.size -= 1 #not declaring this @ the bottom because location doesn't matter for delete. it's getting deleted. byebye
             # Check if we found a node in the middle of this linked list
             if node is not self.head and node is not self.tail:
                 # Update the previous node to skip around the found node
@@ -207,7 +226,6 @@ class LinkedList(object):
         else:
             # Otherwise raise an error to tell the user that delete has failed
             raise ValueError('Item not found: {}'.format(item))
-
 
 def test_linked_list():
     ll = LinkedList()
