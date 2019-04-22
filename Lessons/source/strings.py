@@ -28,8 +28,6 @@ def index_helper(text, pattern):
 def find_index(text, pattern):
     """Return the starting index of the first occurrence of pattern in text,
     or None if not found."""
-    assert isinstance(text, str), 'text is not a string: {}'.format(text)
-    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     
     #Runtime: O(n) because it must duplicated the array AND go through the now-quasi-dictionarified text. Each of these is O(n), adding to O(2n), but because runtime is about estimations and not exact figures, it's ultimately just O(n).
     #Space: O(1). Either 'None' or a single index is returned, and no matter what the parameters, the size of output will remain the same
@@ -42,8 +40,6 @@ def find_index(text, pattern):
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found."""
-    assert isinstance(text, str), 'text is not a string: {}'.format(text)
-    assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
     #Runtime: O(n), for same reasons as above. Array duplication is O(n), looping through the enumerated text is O(n), adding to O(2n) but ultimately being recorded and treated as O(n) because simplification is alright
     #Space: O(n). This is the same code as the function above (they use the same helper function), EXCEPT that it returns an array rather than a single variable of constant size. We don't know how many times the pattern will be found; it could be one time, it could be a ton
