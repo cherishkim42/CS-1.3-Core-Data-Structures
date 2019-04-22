@@ -44,8 +44,8 @@ def find_all_indexes(text, pattern):
     #Runtime: O(n), for same reasons as above. Array duplication is O(n), looping through the enumerated text is O(n), adding to O(2n) but ultimately being recorded and treated as O(n) because simplification is alright
     #Space: O(n). This is the same code as the function above (they use the same helper function), EXCEPT that it returns an array rather than a single variable of constant size. We don't know how many times the pattern will be found; it could be one time, it could be a ton
 
-    indices = index_helper(text, pattern) #call the helper function
-    return indices #either it's empty or it contains something. Or some things. Either way, we're returning a list
+    return index_helper(text, pattern) #call the helper function
+    #either it's empty or it contains something. Or some things. Either way, we're returning a list
 
 def test_string_algorithms(text, pattern):
     found = contains(text, pattern)
