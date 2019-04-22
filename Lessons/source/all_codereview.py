@@ -1,5 +1,28 @@
 """Do Not Run - reference only!"""
 
+# 04.22.19 hashtable.py
+
+def ali__resize(self, new_size=None):
+    """Resize this hash table's buckets and rehash all key-value entries.
+    Should be called automatically when load factor exceeds a threshold
+    such as 0.75 after an insertion (when set is called with a new key).
+    Best and worst case running time: ??? under what conditions? [TODO]
+    Best and worst case space usage: ??? what uses this memory? [TODO]"""
+    # If unspecified, choose new size dynamically based on current size
+    if new_size is None:
+        new_size = len(self.buckets) * 2  # Double size
+    # Option to reduce size if buckets are sparsely filled (low load factor)
+    elif new_size is 0:
+        new_size = len(self.buckets) / 2  # Half size
+
+    old_items = self.items() #old items in an array to hold all current key-val entries
+
+    #alt to self.size = 0 & self.buckets = [LinkedList() for i in range(new_size)]
+    self.__init__(new_size) #wipes out existing buckets and resets size
+    #initiates a whole new set of buckets yeehaw im a cowgirl
+
+    for key, value in old_items: #each entry is a lil linked list
+        self.set(key, value) #inserts key-val entry into new list of buckets, which'll rehash based on the new size
 
 # 04.15.19 linkedlist.py
 

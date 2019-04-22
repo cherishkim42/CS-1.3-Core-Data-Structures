@@ -1,6 +1,8 @@
 #!python
 
+import math
 from linkedlist import LinkedList
+# from __future__ import division #if using older python (ex. python 2)
 
 
 class HashTable(object):
@@ -27,6 +29,7 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
+        #when using python2, must cast either self.size or len(self.buckets) as a float
         #load factor = # entries / # buckets. thus,
         return self.size / len(self.buckets)
 
@@ -56,7 +59,15 @@ class HashTable(object):
         # Collect all pairs of key-value entries in each of the buckets
         all_items = []
         for bucket in self.buckets:
-            all_items.extend(bucket.items())
+            #the bucket.items() parameter is from the LINKEDLIST items() method
+            #can be kinda confusing because, lol, we're inside another items() method
+            #but there is a distinction. that distinction is important
+            all_items.extend(bucket.items()) #extend=append many times, for many items
+                                            #whereas with straight 'append' just 1 at a time
+            # all_items += bucket.items() #outputs the same as above. BUT! BUTBUTBUT!!!
+                                            #for +=, you must make a new array and reassign var,
+                                            #so this would require more time+memory. not ideal!
+                                            #extend exists to tackle 🥊 this problem 
         return all_items
 
     def length(self):
@@ -107,7 +118,7 @@ class HashTable(object):
 
         #hollyhock voice: idk, IS there an entry in this bucket with this key?
         entry = bucket.find(lambda key_value: key_value[0] == key)
-        if entry is not None: #not none = it exists, we're updating it
+        if entry is not None: #not none = it exists, and we're updating it
             bucket.delete(entry) #remove key-val entry from bucket BEFORE appending
             #DON'T UPDATE SELF.SIZE HERE - already addressed IN delete()!
         else: #without deleting, we must increment size by +1
@@ -135,7 +146,11 @@ class HashTable(object):
             raise KeyError('Key not found: {}'.format(key))
 
     #hihi
+    #the _ is the equivalent of 'private' - says this is an internal method only to be called within the class, so don't call it outside.
+    #not to be confused with __, i.e. mangle, which makes it even more private lol
+    #alan says 'seriously guys don't touch this' (this='mangle')
     def _resize(self, bucket_quantity=None):
+        #i renamed the non-self param because 'new_size' was tripping me up HARD
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
@@ -147,16 +162,25 @@ class HashTable(object):
 
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif bucket_quantity is 0:
-            bucket_quantity = len(self.buckets) / 2  # Half size
+            bucket_quantity = math.floor(len(self.buckets) / 2)  # Half size
 
         entries = self.items() #list to temporarily hold all current key-val entries
         self.buckets = [LinkedList() for i in range(bucket_quantity)] #reset buckets w/ bucket_quantity as guidance
         self.size = 0 #reset # of entries before appending key-val pairs
 
-        for entry in entries: #each entry is a lil linked list
-            key = entry[0]
-            value = entry[1]
+        #look how short and nice it is!!! <3
+        for key, value in entries: #each entry is a lil linked list
             self.set(key, value) #inserts key-val entry into new list of buckets, which'll rehash based on the new size
+        # # Python lets us do the above ^ which is the shortened ver of:
+        # for entry in entries:
+        #     key, value = entry
+        #     self.set(key, value)
+
+        # #the OG way
+        # for entry in entries:
+        #     key = entry[0]
+        #     value = entry[1]
+        #     self.set(key, value)
 
 def test_hash_table():
     ht = HashTable(4)
