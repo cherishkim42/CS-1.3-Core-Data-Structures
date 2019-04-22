@@ -17,8 +17,8 @@ def is_palindrome(text):
     #char for character
     split_text = ''.join(char for char in text.lower() if char in string.ascii_lowercase)
 
-    return is_palindrome_iterative(split_text)
-    # return is_palindrome_recursive(split_text)
+    # return is_palindrome_iterative(split_text)
+    return is_palindrome_recursive(split_text)
 
 def is_palindrome_iterative(text):
     left = 0
@@ -35,11 +35,11 @@ def is_palindrome_iterative(text):
 def is_palindrome_recursive(text, left=None, right=None):
     if left is None and right is None:
         left = 0
-        right = len(split_text)-1
+        right = len(text)-1
     elif left is None or right is None:
         raise AssertionError('Please specify either BOTH left and right params, or neither')
     if left < right:
-        if split_text[left] == split_text[right]:
+        if text[left] == text[right]:
             return is_palindrome_recursive(text, left+1, right-1)
         else:
             return False
