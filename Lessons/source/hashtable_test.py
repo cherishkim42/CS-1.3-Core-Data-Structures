@@ -86,7 +86,7 @@ class HashTableTest(unittest.TestCase):
         assert ht.size == 4
         assert len(ht.buckets) == 8
         assert ht.load_factor() == 0.5
-
+ 
     def test_contains(self):
         ht = HashTable()
         ht.set('I', 1)

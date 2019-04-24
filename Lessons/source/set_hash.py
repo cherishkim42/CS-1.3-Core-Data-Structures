@@ -1,6 +1,4 @@
 """
-NONE OF THIS IS TESTED IN ANY WAY pls for your own good don't use as reference
-
 I've elected to build this set class with... drumroll please... a HASH TABLE!
 
 Presuppositions of this class:
@@ -13,8 +11,6 @@ Remaining:
 * intersection(other_set): return a new set that is the intersection of this set and ~other_set~
 * is_subset(other_set): return a boolean indicating whether ~other_set~ is a subset of this set
 """
-
-#must pass in key-val pairs for elements in the form (key, val)
 
 from hashtable import HashTable
 from linkedlist import LinkedList
@@ -83,23 +79,3 @@ class SetHash(object):
         else:
             bucket.delete(element) #calling on LL's delete method
             self.size -= 1
-
-
-    # #omg. omg. omg. no.
-
-    # def _key_element_helper(self, element):
-    #     """Hooray DRYness!
-    #     Make it even shorter - make it like the length() method"""
-    #     element_key = []
-    #     for slot in self.buckets:
-    #         for key, value in slot.items():
-    #             element_key.append[key]
-    #     return element_key
-
-    # def _val_element_helper(self, element):
-    #     """yeah lol idk when you would ever use this"""
-    #     element_val = []
-    #     for slot in self.buckets:
-    #         for key, value in slot.items():
-    #             element_val.append[value]
-    #     return element_val
