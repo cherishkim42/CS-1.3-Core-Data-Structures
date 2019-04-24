@@ -16,14 +16,14 @@ Remaining:
 
 #must pass in key-val pairs for elements in the form (key, val)
 
+from hashtable import HashTable
 from linkedlist import LinkedList
 
 class SetHash(object):
     
-    def __init__(self, init_size=8, elements=None):
+    def __init__(self, elements=None):
         """Initialize a new empty set structure 🍃 & add each element if a sequence is given."""
-        # super(Set, self).__init__() #❌calling Set's parent class❌
-        self.buckets = [LinkedList() for _ in range(init_size)]
+        self.hashet = HashTable()
         self.size = 0 #num of key-val entries
 
         if elements is not None:
@@ -33,31 +33,39 @@ class SetHash(object):
 
     def _bucket_index(self, key):
         """Return the bucket index where the given key would be stored."""
-        return hash(key) % len(self.buckets)
+        return hash(key) % len(self.hashet.buckets)
 
     def length(self):
         """Return the # of key-val entries by traversing buckets"""
-        #straight-up taken from hashtable.py
-        return sum(bucket.length() for bucket in self.buckets)
+        return self.hashet.length()
     
     def contains(self, element):
         """Return a boolean indicating whether 'element' is in this set."""
-        element_key = []
-        for slot in self.buckets:
-            for key, value in slot.items():
-                element_key.append[key]
-        index = self._bucket_index(element_key[0]) #first and only element of element_key is at index 0
-        bucket = self.buckets[index]
+        index = self._bucket_index(element[0])
+        bucket = self.hashet.buckets[index]
         #🐴hollyhock voice: idk, IS there an entry in this bucket with this key?
+        entry = bucket.find(lambda key_value: key_value[0] == element[0])
+        if entry is not None:
+            return True
+        else:
+            return False
+
+    def get(self, key):
+        """Return the value associated with the given key, or raised KeyError."""
+        index = self._bucket_index(key)
+        bucket = self.hashet.buckets[index]
         entry = bucket.find(lambda key_value: key_value[0] == key)
-        return entry is not None #returns T/F
+        if entry is not None:
+            assert isinstance(entry, tuple)
+            assert len(entry) == 2
+            return entry[1]
+        else:
+            raise KeyError('I can\'t retrieve something that\'s not there! \'{}\' not found 😭'.format(key))
 
     def add(self, element):
         """Add 'element' to this set, if not present already."""
-        # key = key_element_helper(element)
-        # val = val_element_helper(element)
-        # index = self._bucket_index(target_key[0])
-        # bucket = self.buckets[index]
+        index = self._bucket_index(element[0])
+        bucket = self.hashet.buckets[index]
 
         if self.contains(element) is True: #simplest base case
             raise KeyError('Have you forgotten? 😱 NO DUPLICATES! ❌👥❌ {} is already in this set!'.format(element))
@@ -67,10 +75,8 @@ class SetHash(object):
 
     def remove(self, element):
         """Remove 'element' from this set, if present, or else raise KeyError"""
-        # key = key_element_helper(element)
-        # val = val_element_helper(element)
-        # index = self._bucket_index(target_key[0])
-        # bucket = self.buckets[index]
+        index = self._bucket_index(element[0])
+        bucket = self.hashet.buckets[index]
 
         if self.contains(element) is False: #simplest base case
             raise KeyError('Silly, you can\'t delete an element that isn\'t even in the set. I couldn\'t find {} anywhere. 😞'.format(element))
@@ -79,16 +85,18 @@ class SetHash(object):
             self.size -= 1
 
 
-    # #unneeded helper functions
-    # def key_element_helper(self, element):
-    #     """Hooray DRYness"""
+    # #omg. omg. omg. no.
+
+    # def _key_element_helper(self, element):
+    #     """Hooray DRYness!
+    #     Make it even shorter - make it like the length() method"""
     #     element_key = []
     #     for slot in self.buckets:
     #         for key, value in slot.items():
     #             element_key.append[key]
     #     return element_key
 
-    # def val_element_helper(self, element):
+    # def _val_element_helper(self, element):
     #     """yeah lol idk when you would ever use this"""
     #     element_val = []
     #     for slot in self.buckets:
