@@ -3,6 +3,8 @@ import unittest
 if not hasattr(unittest.TestCase, 'assertCountEqual'):
     unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
 
+"""contains ➕ add ➕ remove"""
+
 class SetTest(unittest.TestCase):
 
     def test_init_v1(self): #❌ passing in elements

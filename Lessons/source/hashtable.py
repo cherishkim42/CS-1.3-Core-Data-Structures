@@ -153,7 +153,7 @@ class HashTable(object):
     #not to be confused with __, i.e. mangle, which makes it even more private lol
     #alan says 'seriously guys don't touch this' (this='mangle')
     def _resize(self, bucket_quantity=None):
-        #i renamed the non-self param because 'new_size' was tripping me up HARD
+        #❗️i renamed the non-self param because 'new_size' was tripping me up HARD
         """Resize this hash table's buckets and rehash all key-value entries.
         Should be called automatically when load factor exceeds a threshold
         such as 0.75 after an insertion (when set is called with a new key).
