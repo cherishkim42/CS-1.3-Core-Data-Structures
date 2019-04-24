@@ -9,7 +9,7 @@ class HashTable(object):
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size."""
-        self.buckets = [LinkedList() for i in range(init_size)]
+        self.buckets = [LinkedList() for _ in range(init_size)]
         self.size = 0  # Number of key-value entries
 
     def __str__(self):
@@ -60,13 +60,15 @@ class HashTable(object):
         all_items = []
         for bucket in self.buckets:
             #the bucket.items() parameter is from the LINKEDLIST items() method
-            #can be kinda confusing because, lol, we're inside another items() method
-            #but there is a distinction. that distinction is important
+            #can be kinda confusing because, lol, we're inside another items() method 👥
+            #but there is an IMPORTANT❗️distinction
             all_items.extend(bucket.items()) #extend=append many times, for many items
-                                            #whereas with straight 'append' just 1 at a time
-            # all_items += bucket.items() #outputs the same as above. BUT! BUTBUTBUT!!!
-                                            #for +=, you must make a new array and reassign var,
-                                            #so this would require more time+memory. not ideal!
+                                            #while with 'append' just 1 at a time
+            # all_items += bucket.items() #outputs the same as above. BUTBUTBUT!!!
+                                            #for +=, you must
+                                                #1 make new array
+                                                #2 reassign var,
+                                            #and so needs more time+memory. 👎🏼
                                             #extend exists to tackle 🥊 this problem 
         return all_items
 
@@ -115,10 +117,11 @@ class HashTable(object):
         Worst case running time: ??? under what conditions? [TODO]"""
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-
-        #hollyhock voice: idk, IS there an entry in this bucket with this key?
+ 
+        #🐴hollyhock voice: idk, IS there an entry in this bucket with this key?
         entry = bucket.find(lambda key_value: key_value[0] == key)
-        if entry is not None: #not none = it exists, and we're updating it
+        # if entry is not None: #not none = it exists, and we're updating it #HAHAHA I FOUND A BETTER WAY 🎉😁🎉
+        if self.contains(key) is True:
             bucket.delete(entry) #remove key-val entry from bucket BEFORE appending
             #DON'T UPDATE SELF.SIZE HERE - already addressed IN delete()!
         else: #without deleting, we must increment size by +1
@@ -165,7 +168,7 @@ class HashTable(object):
             bucket_quantity = math.floor(len(self.buckets) / 2)  # Half size
 
         entries = self.items() #list to temporarily hold all current key-val entries
-        self.buckets = [LinkedList() for i in range(bucket_quantity)] #reset buckets w/ bucket_quantity as guidance
+        self.buckets = [LinkedList() for _ in range(bucket_quantity)] #reset buckets w/ bucket_quantity as guidance
         self.size = 0 #reset # of entries before appending key-val pairs
 
         #look how short and nice it is!!! <3

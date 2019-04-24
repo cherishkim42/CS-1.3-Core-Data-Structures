@@ -1,17 +1,10 @@
 """Do Not Run - reference only!"""
 
-# 04.22.19 hashtable.py
+# 💜04.22.19 hashtable.py
 
 def ali__resize(self, new_size=None):
-    """Resize this hash table's buckets and rehash all key-value entries.
-    Should be called automatically when load factor exceeds a threshold
-    such as 0.75 after an insertion (when set is called with a new key).
-    Best and worst case running time: ??? under what conditions? [TODO]
-    Best and worst case space usage: ??? what uses this memory? [TODO]"""
-    # If unspecified, choose new size dynamically based on current size
     if new_size is None:
         new_size = len(self.buckets) * 2  # Double size
-    # Option to reduce size if buckets are sparsely filled (low load factor)
     elif new_size is 0:
         new_size = len(self.buckets) / 2  # Half size
 
@@ -19,12 +12,12 @@ def ali__resize(self, new_size=None):
 
     #alt to self.size = 0 & self.buckets = [LinkedList() for i in range(new_size)]
     self.__init__(new_size) #wipes out existing buckets and resets size
-    #initiates a whole new set of buckets yeehaw im a cowgirl
+    #initiates a whole new set of buckets yeehaw im a cowgirl 🤠
 
     for key, value in old_items: #each entry is a lil linked list
         self.set(key, value) #inserts key-val entry into new list of buckets, which'll rehash based on the new size
 
-# 04.15.19 linkedlist.py
+# 💜04.15.19 linkedlist.py
 
 def edwin_insert_at_index(self, index, item):
     if not (0 <= index < self.size): #Error if index out of range
@@ -70,7 +63,7 @@ def dylan_replace(self, old_item, new_item):
     raise ValueError('Value not found: {}'.format(old_item)) #not found, aka ELSE
     #like regifting a box! DATA swapped out, node 'container' kept.
 
-# 04.08.19 search.py
+# 💜04.08.19 search.py
 
 def ikey_linear_search_recursive(array, item, index=0):
     #Connor suggested: index == len(array) - 1, rather than >=
@@ -124,13 +117,13 @@ def faith_binary_search_recursive(array, item, left=None, right=None):
 
 # Can we do what we write below?
 def faith_binary_search_recursive(array, item, left=0, right=len(array)-1)
-# NO. NO, WE CANNOT. Why???
+# NO. 🙅🏻‍NO, WE CANNOT. 🙅🏻‍🙅🏻‍🙅🏻‍ WHY??? omg shes wearing purple i can't
 # When Python reads a line with 'def', it first reads the contents for syntax
 # Then it goes through the parameters and will set any default values one time
 # No context for it to say right=len(array)-1. That's why it's a big NO
 
 
-# 04.08.19: recursion.py
+# 💜04.08.19: recursion.py
 
 def jasmine_factorial_iterative(n):
     factorial = 1
@@ -142,7 +135,7 @@ def jasmine_factorial_iterative(n):
     return factorial
 
 
-# 04.04.19: bases.py
+# 💜04.04.19: bases.py
 
 def max_decode(digits, base): #Maximo's code review. Won't use. It's here for ref
     #suggested:
