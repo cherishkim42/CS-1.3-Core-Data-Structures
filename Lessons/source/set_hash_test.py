@@ -54,3 +54,17 @@ class SetTest(unittest.TestCase):
         assert lilset.contains(('un', 1)) is False
         with self.assertRaises(KeyError): lilset.remove(('un', 1))
         with self.assertRaises(KeyError): lilset.remove(('two', 11))
+
+    """Union + Intersection + Difference + Is_Subset"""
+
+    def test_union(self):
+        gods_of_skill = SetHash()
+        gods_of_skill.add(('namjoon', 'god'))
+        gods_of_skill.add(('yoongi', 'savant'))
+        gods_of_skill.add(('jimin', 'sunshine'))
+        gods_of_skill.add(('hoseok', 'elegance'))
+        faves = SetHash()
+        faves.add(('namjoon', 'god'))
+        faves.add(('taehyung', 'angel'))
+        faves.add(('seokjin', 'chakhae'))
+        assert gods_of_skill.union(faves) == (('namjoon, god'), ('yoongi', 'savant'), ('jimin', 'sunshine'), ('hoseok', 'elegance'), ('taehyung', 'angel'), ('seokjin', 'chakhae'))
