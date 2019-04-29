@@ -1,5 +1,26 @@
 """Do Not Run - reference only!"""
 
+# 💜04.29.19 redact_problem.py
+
+from sets import Set
+def eric_redact(words, banned_words):
+    """Runtime: O(1) b/c it runs ea. word thru a hashed set, hence instant.
+    Space complexity: O(n) b/c it needs to have 3 lists open to run so it depends on the length of these lists"""
+    banned = Set(banned_words)
+    #The immediately following line is equivalent to the FOUR lines following it
+    censored = [word for word in wordsif not banned.contains(word)]
+    censored = []
+    for word in words: #n iterations of a
+        if not banned.contains(Word): #constant time operation
+            censored.append(word) #of a constant time operation
+    return censored
+words = ['a', 'b', 'c', 'c', 'd']
+banned = ['d']
+censor = redact(words, banned)
+print(censor)
+#Using Set rather than an array - Set uses more space but less runtime than using an array
+
+
 # 💜04.24.19 set.py
 
 # in Set class. Set __init__ fxn: .container -> hashtable, .size -> 0
