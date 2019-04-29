@@ -1,5 +1,37 @@
 """Do Not Run - reference only!"""
 
+# 💜04.24.19 set.py
+
+# in Set class. Set __init__ fxn: .container -> hashtable, .size -> 0
+def jamie_intersection(self, other_set):
+    #Time complexity: O(n) or O(m), whichever one is smaller
+    new_set = Set() #O(b) for # of buckets
+
+    if self.size > other_set.size:
+        #check to see which set is smaller and then iterate thru that one
+        for element in other_set.container.keys(): #O(n)
+            if self.contains(element): #O(1)
+                new_set.add(element) #O(1)
+    else:
+        for element in self.container.keys(): #O(n)
+            if other_set.contains(element): #O(1)
+                new_set.add(element) #O(1)
+    return new_set
+
+def jamie_difference(self, other_set):
+    new_set = Set()
+
+    other_set_copy = other_set.copy.deepcopy() #to prevent transforming the original set
+
+    for element in self.container.keys():
+        #iterate thru the elements in .keys()
+        if not other_set_copy.contains(element):
+            new_set.add(element)
+        else:
+            other_set_copy.remove(element)
+
+    return new_set
+
 # 💜04.22.19 hashtable.py
 
 def ali__resize(self, new_size=None):
