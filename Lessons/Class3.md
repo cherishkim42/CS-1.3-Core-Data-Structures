@@ -62,9 +62,9 @@ Chosen students present their solutions for Iterative Factorial
 - Once each of you have discussed the problem, find a new partner, and trade approaches again to see more ways on how people went about the problem
 - A few students will be chosen after to go up and present their solutions
 
-### Code Review Presentation (15 min) 
+### Code Review Presentation (15 min)
 
-Chosen students present their solutions for Recursive Linear Search 
+Chosen students present their solutions for Recursive Linear Search
 
 **Tips:**
 
@@ -85,8 +85,8 @@ Chosen students present their solutions for Recursive Linear Search
 
 ### Code Review Presentation - Iterative Binary Search (10 min)
 
-Chosen students present their solutions for Iterative Binary Search 
-    
+Chosen students present their solutions for Iterative Binary Search
+
 **Tips:**
 
 - Using multiple indexes (i.e. `left` starting at the beginning of the array, `right` starting at the end) is fine, but once they _meet or cross over_, some action should take place
@@ -97,7 +97,7 @@ Chosen students present their solutions for Iterative Binary Search
 
 ### Code Review Presentation - Recursive Binary Search (10 min)
 
-Chosen students present their solutions for Iterative Binary Search 
+Chosen students present their solutions for Iterative Binary Search
 
 **Tips:**
 
@@ -153,17 +153,8 @@ See the graph below to compare exponent, linear, and log:
 
 ## Wrap Up (5 min)
 
-Go over what the challenges are, and allow for clarifying questions
+Go over what the challenges for next class, and allow for clarifying questions
 
-- **Plaindrome**: word reads the same forward or backwards i.e. racecar
-    - Implement iteratively and recursively
-    - First start with simple palindromes, then make sure it can handle mixed casing, puncuation, white space, and combinations of any of those
-- **String Searching**: implement the algorithm used when you hit CMD+F in a file
-    - Also come up with additional unit tests to test your code
-    - More advanced than linear search, as all letters must perfectly match
-    - Algorithms/libraries for this exist. Come up with your own and see if you can improve it as you go.
-    - Avoid duplication, and utilize code re-use!
-- Complete the challenges before next class
 
 ## Resources
 - Read Stack Overflow's answers to the question "[What is unit testing?]"
