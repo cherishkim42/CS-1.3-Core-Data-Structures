@@ -1,5 +1,54 @@
 """Do Not Run - reference only!"""
 
+# 💜05.06.19 binarytree.py
+
+#read all the cahill stuff together
+
+def cahill_items_in_order(self):
+    items = []
+    if not self.is_empty():
+        self._traverse_in_order_recursive(self.root, items.append) #items.append is an uncalled method. It is the value of the 'visit' parameter in 'traverse in order recursive'
+    return items #return in order list of all items in tree
+
+def cahill__traverse_in_order_recursive(self, node, visit):
+    #Runtime: O(n) is a guess because these methods run on all nodes: visit, left traverse, right traverse, possibly +1-3 for if statements (if node.left is not None could be tossed in) = O(6n) = O(n).
+    #Space: O(logn) = O(height) because height of tree = max size (height) of stack used in recursion. This assumes the tree is balanced. If the tree is NOT balanced, then the height approaches n, so that'd be O(n).
+    if node is not None:
+        self._traverse_in_order_recursive(node.left, visit)
+        visit(node.data)
+        self._traverse_in_order_recursive(node.right, visit)
+
+def cahill__traverse_in_order_iterative(self, node, visit):
+    stack = LinkedStack() #stack for holding horizon. have to declare explicitly in iterative
+    done = False #tells when we are done traversing
+    current = node #set node as start node to start
+    while not done: #traverse nodes while stack isn't empty
+        if current is not None: #traverse down left side of tree
+            stack.push(current) #append nodes to stack
+            current = current.left
+        else: #if node is none, time to go grab from stack
+            if not stack.is_empty():
+                current = stack.pop() #popping stack = 'let me go back' = advancing up the tree again = function call returning
+                visit(current.data) #visit the node
+                current = current.right #grab the right node (None is fine)
+            else: #all done!
+                done = True
+
+def nathan__traverse_level_order_iterative(self, start_node, visit):
+
+    queue = Queue() #Nathan imported a linked list queue to store nodes not yet traversed in level order
+
+    queue.enqueue(start_node) #enqueue given starting node
+
+    while len(queue) > 0: #loop until queue is empty
+        node = queue.dequeue() #dequeue node at front of queue
+        visit(node.data) #visit this node's data with given function
+        if node.left: #enqueue this node's left child if it exists
+            queue.enqueue(node.left)
+        if node.right: #enqueue this node's right child if it exists
+            queue.enqueue(node.right)
+
+
 # 💜04.29.19 redact_problem.py
 
 from sets import Set
