@@ -74,7 +74,6 @@ def binary_search_recursive(array, item, left=None, right=None):
             # return binary_search_recursive(array, item, center+1, right)
             left = center+1
             return binary_search_recursive(array, item, left, right)
-
         return None
     return None
 

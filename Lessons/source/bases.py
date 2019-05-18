@@ -23,7 +23,7 @@ def decode(digits, base):
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)"""
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base) #handle up to base36
-    decoded = 0 #initialize. start w/ 0 here bc we're adding to it, no need to be empty
+    decoded = 0 #initialize
 
     for index, value in enumerate(reversed(digits)):
         decoded += (base**index) * to_dict[value]

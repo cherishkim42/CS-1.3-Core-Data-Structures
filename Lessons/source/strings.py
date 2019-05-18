@@ -1,6 +1,5 @@
 #!python
 import collections
-from collections import deque
 
 #text=haystack, pattern=needle
 def contains(text, pattern):
